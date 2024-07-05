@@ -13,7 +13,6 @@ enum EsMsgType{
     CREATE_GROUP_MSG, //创建群组
     ADD_GROUP_MSG, //加入群组
     GROUP_CHAT_MSG, //群聊天
-
 };
 MainWindow::MainWindow(QWidget *parent,QString id_,QString pwd_)
     : QMainWindow(parent),m_id(id_),m_pwd(pwd_)

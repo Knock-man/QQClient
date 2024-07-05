@@ -10,7 +10,7 @@
 #include <QJsonArray>
 #include <QMessageBox>
 #include "login.h"
-#define PORT 8888;
+#define PORT 8110;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
