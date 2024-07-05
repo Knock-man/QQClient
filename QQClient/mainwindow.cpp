@@ -15,33 +15,36 @@ enum EsMsgType{
     GROUP_CHAT_MSG, //群聊天
 
 };
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent,QString id_,QString pwd_)
+    : QMainWindow(parent),m_id(id_),m_pwd(pwd_)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     //连接服务器
     initNet();
+    //检查登录
+    checklogin();
 
 }
 
 MainWindow::~MainWindow()
 {
-    socket->close();
+    if(socket->state() == QAbstractSocket::ConnectedState)
+    {
+        socket->close();
+    }
     delete ui;
 }
 
 //验证用户是否存在
-void MainWindow::checklogin(QString id,QString pwd)
+void MainWindow::checklogin()
 {
-    this->id = id;
-    this->pwd = pwd;
-    qDebug()<<u8"账号"<<id<<u8"密码"<<pwd;
+    qDebug()<<u8"账号"<<m_id<<u8"密码"<<m_pwd;
     // 构建包含文件内容的 JSON 对象
     QJsonObject json;
     json["msgid"] = LOGIN_MSG;
-    json["id"] = id.toInt();
-    json["password"] = pwd;
+    json["id"] = m_id.toInt();
+    json["password"] = m_pwd;
     // 将 JSON 对象转换为 JSON字符串
     QJsonDocument doc(json);
     QByteArray jsonData = doc.toJson();
@@ -65,14 +68,15 @@ void MainWindow::checklogin(QString id,QString pwd)
         if (doc.isObject()) {
             QJsonObject obj = doc.object();
             if (obj["errno"].toInt() != 0) {
-                if(obj["errno"].toInt()==2){//已经登录
-                    socket->close();
-                    //login::deleteOnline(id);
-                    return;
-                }
+//                if(obj["errno"].toInt()==2){//已经登录
+//                    socket->close();
+//                    //login::deleteOnline(id);
+//                    return;
+//                }
                 QMessageBox::warning(nullptr,u8"登录错误",obj["errmsg"].toString());
                 socket->close();
-                login::deleteOnline(id);
+                emit deleteuser(m_id);
+                //login::deleteOnline(m_id);
             } else {
                 show();
                 //socket->close();
@@ -85,8 +89,9 @@ void MainWindow::checklogin(QString id,QString pwd)
 }
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    qDebug() << u8"关闭了窗口";
     socket->close();
-    login::deleteOnline(id);
+    emit deleteuser(m_id);
     //event->accept();
 }
 void MainWindow::initNet()

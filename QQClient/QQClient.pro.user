@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.12.2, 2024-07-04T22:47:19. -->
+<!-- Written by QtCreator 4.12.2, 2024-07-05T10:25:19. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -83,8 +83,8 @@
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="bool">true</value>
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\xbj\Desktop\build-QQClient-Desktop_Qt_5_12_9_MSVC2017_32bit-Debug</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/xbj/Desktop/build-QQClient-Desktop_Qt_5_12_9_MSVC2017_32bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">..\build-QQClient-Desktop_Qt_5_12_9_MSVC2017_32bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">../build-QQClient-Desktop_Qt_5_12_9_MSVC2017_32bit-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>

@@ -10,7 +10,7 @@
 #include <QJsonArray>
 #include <QMessageBox>
 #include "login.h"
-#define PORT 9895;
+#define PORT 8888;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,21 +21,22 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr,QString id="",QString pwd="");
     ~MainWindow();
 
 private:
     void initNet();//初始化网络
-
-public slots:
-    void checklogin(QString username, QString password);
+    void checklogin();
+signals:
+    //关闭窗口信号
+    void deleteuser(QString id);
 
 protected:
     void closeEvent(QCloseEvent *event) override;
 private:
     Ui::MainWindow *ui;
-    QString id;
-    QString pwd;
+    QString m_id;
+    QString m_pwd;
     //网络相关
     QString ipAddress = "127.0.0.1";
     int port = PORT;
